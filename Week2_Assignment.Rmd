@@ -1,0 +1,26 @@
+---
+title: "Favorite Places in Washington, DC"
+author: "Sam Vacik"
+date: "3/5/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, warning=FALSE, messages=FALSE}
+library(leaflet)
+df <- data.frame(lat=c(38.8913, 38.9066, 38.8924), lng=c(-77.0261, -77.0248, -77.0484), names=c("Smithsonian Natural History Museum", "Tiger Fork (Restaurant)", "Einstein Statue"))
+#df %>%
+#     leaflet() %>%
+#     addTiles() %>%
+#     addMarkers(lat = df$lat, lng = df$lng, popup = df$names)
+my_map <- leaflet() %>%
+     setView(lng = max(df$lng), lat = min(df$lat), zoom = 13) %>%
+     addTiles() %>%
+     addMarkers(lat= df$lat, lng=df$lng, popup=df$names)
+     
+my_map
+```
+
